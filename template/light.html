@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>开关灯控制</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='{{url_for("static",filename = "amazeui.css")}}'>
+
+</head>
+
+<body>
+        <h2 class=".am-text-center">当前状态：{{ '已打开'  if is_on else '已关闭' }}</h2>
+
+        <form class="am-form " method="POST">
+            <input type="hidden" name = "act" value="flip"/>
+            <button type="submit" class="am-btn am-btn-primary">开关灯</button>
+        </form>
+        
+</body>
+</html>
