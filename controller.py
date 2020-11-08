@@ -19,6 +19,8 @@ def on_exit():
 
 def on_state_change(is_on):
     light.flipState()
+    print(is_on)
+
 
 @app.route('/light', methods=['GET','POST'])
 def handle_page():
