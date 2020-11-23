@@ -25,12 +25,12 @@ class Switch(object):
         print("The switch is on PORT%s"%self.gpio_port)
 
     def on_timer_event(self):
-        mutex.acquire()
+        self.mutex.acquire()
         stat = not GPIO.input(self.gpio_port)
         if stat != self.is_on:
             self.is_on = stat
             self.on_state_change(stat)
-        mutex.release()
+        self.mutex.release()
         self.timer = threading.Timer(0.5, self.on_timer_event)
         self.timer.start()
 
@@ -56,18 +56,18 @@ class Light(object):
 
         
     def turnOn(self):
-        mutex.acquire()
+        self.mutex.acquire()
         print("The light now turns on")
         self.is_on = True
         GPIO.output(self.gpio_port, True)
-        mutex.release()
+        self.mutex.release()
 
     def turnOff(self):
-        mutex.acquire()
+        self.mutex.acquire()
         print("The light now turns off")
         self.is_on = False
         GPIO.output(self.gpio_port, False)
-        mutex.release()
+        self.mutex.release()
 
     def flipState(self):
         if self.is_on:
