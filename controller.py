@@ -11,7 +11,7 @@ def main():
     hardware.init()
     light.init()
     switch.init(on_state_change)
-    app.run(host='0.0.0.0', port = 80, debug=True) # The HOST must be '0.0.0.0' not '127.0.0.1' in LINUX!
+    app.run(host='0.0.0.0', port = 80, debug=False) # The HOST must be '0.0.0.0' not '127.0.0.1' in LINUX!
 
 @atexit.register
 def on_exit():
@@ -19,7 +19,6 @@ def on_exit():
 
 def on_state_change(is_on):
     light.flipState()
-    print(is_on)
 
 
 @app.route('/light', methods=['GET','POST'])
